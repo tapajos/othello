@@ -1,0 +1,17 @@
+<% form_tag :action => :index do %>
+  <table name="othelloBoard" border="1" bgColor="#000000">
+  
+    <% @board.row_vectors.each_with_index do |line, line_index| %>
+      <tr>
+        <% line.to_a.each_with_index do |value, column_index| %>
+          <td name="#{line_index}/#{column_index}" bgcolor="#FFFFFF">
+          <%="#{line_index}/#{column_index}"%>
+          <%= hidden_field_tag "matrix[#{line_index}][]", value %>
+          </td>
+        <% end%>
+      </tr>
+    
+    <% end %>
+  </table>
+  <%= submit_tag%>
+<% end %>
