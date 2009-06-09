@@ -9,16 +9,12 @@ class StartController < ApplicationController
   
   private
 
-    def draw
-      rand(3)
-    end
-    
     def get_rows
       if request.post?
         params[:matrix].keys.sort.collect{|line| params[:matrix][line]}
       else  
         rows = Array.new(SIZE).collect do
-          Array.new(SIZE).collect{draw}
+          Array.new(SIZE).collect{0}
         end
       end
     end
