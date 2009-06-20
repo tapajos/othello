@@ -1,0 +1,20 @@
+.othello_board_td{
+  border-style: solid;
+  border-width: 2px;
+}
+
+#othello_board {
+  width: 600px;
+  height: 600px;
+  color: #000000;
+  border-spacing: 0;
+  background-image: url('../images/board.jpg');
+}
+
+.p1 {
+  background-color: red;
+}
+
+.cpu {
+  background-color: green;
+}
