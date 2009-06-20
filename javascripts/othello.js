@@ -9,7 +9,7 @@ var OthelloRules = {
   },
   cpuCell: function() {
     alert("É nessa parte que entra a IA do jogo.\ Deve retornar a celula onde o computador vai jogar.");
-    return $("#0_0");
+    return $("#cell_0_0");
   },
   isGameOver: function() {
     alert("É nessa parte que a gente verifica se é game over.");
@@ -39,19 +39,22 @@ var OthelloGame = {
      alert("Deu game over, devemos calcular quem ganhou aqui e remover a possibilidade de continuar jogando \n e por umas mensagens bonitinhas informando que acabou e um botão de reload.");
     };
     return isGameOver;
-  }
-};
-
-OthelloCell = $.klass({
-  onclick: function(){
-    if(OthelloRules.checkValidPosition(this.element)) {
-      OthelloGame.fill(this.element, 1);
+  },
+  play: function(cell) {
+    if(OthelloRules.checkValidPosition(cell)) {
+      OthelloGame.fill(cell, 1);
       if(!OthelloGame.gameOver()) {
         OthelloGame.cpu();
       }
     } else {
       alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
-    }
+    };
+  }
+};
+
+OthelloCell = $.klass({
+  onclick: function(){
+    OthelloGame.play(this.element);
   }
 });
 
