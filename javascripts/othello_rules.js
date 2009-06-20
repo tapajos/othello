@@ -8,7 +8,6 @@ var OthelloRules = {
     return $("#cell_0_0");
   },
   isGameOver: function() {
-    alert("É nessa parte que a gente verifica se é game over.");
-    return false;
+    return !MatrixHelper.hasEmpyCell();
   }
 };
