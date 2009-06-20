@@ -1,6 +1,6 @@
-// value 0: unoccupied
-// value 1: player 1
-// value 2: computer
+var UNOCCUPIED = 0;
+var HUMAN = 1;
+var CPU = 2;
 
 var matrix = new Matrix(8,8,0);
 
