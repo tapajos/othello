@@ -31,9 +31,9 @@ var MatrixHelper = {
       };
     };
     if(cpu > human) {
-      return CPU;
+      return "Você perdeu, nossa IA te derrotou.";
     } else {
-      return HUMAN;
+      return "Parabéns, você venceu.";
     };
   },
   frontierTop: function(cellIndexes,oposite) {
@@ -93,12 +93,46 @@ var MatrixHelper = {
     matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;
     return cellIndexes;
   },
-  lineEat: function(lastCell, player) {
+  lineEatLeftToRight: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    replace = false;
+    stop = false;
+    row = matrix.getRow(indexes.x).clone();
+    for(var index=indexes.y+1; index < row.length && !stop; index = index + 1) {
+      if(row[index] == oposite) {
+        row[index] = player;
+      } else {
+        if(row[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    if(replace) {
+      matrix[indexes.x] = row;
+    };
   },
-  colEat: function(lastCell, player) {
+  lineEatRightToLeft: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    replace = false;
+    stop = false;
+    row = matrix.getRow(indexes.x).clone();
+    for(var index=indexes.y-1; index > 0 && !stop; index = index - 1) {
+      if(row[index] == oposite) {
+        row[index] = player;
+      } else {
+        if(row[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    if(replace) {
+      matrix[indexes.x] = row;
+    };
   },
-  positiveDiagonalEat: function(lastCell, player) {
+  colEat: function(lastCell, player, oposite) {
   },
-  negativeDiagonalEat: function(lastCell, player) {
+  positiveDiagonalEat: function(lastCell, player, oposite) {
+  },
+  negativeDiagonalEat: function(lastCell, player, oposite) {
   },
 };

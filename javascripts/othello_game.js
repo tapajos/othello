@@ -7,12 +7,14 @@ var OthelloGame = {
     for (var line_index=0;line_index<matrix.getRowSize();line_index=line_index+1) {
       line = matrix.getRow(line_index);
       for (var col_index=0;col_index<line.length;col_index=col_index+1) {
+        OthelloRules.cellFromIndexes({x:line_index, y:col_index}).removeClass("p1");
+        OthelloRules.cellFromIndexes({x:line_index, y:col_index}).removeClass("cpu");
         if(line[col_index] == HUMAN){
           OthelloRules.cellFromIndexes({x:line_index, y:col_index}).addClass("p1");
-        }
+        };
         if(line[col_index] == CPU){
           OthelloRules.cellFromIndexes({x:line_index, y:col_index}).addClass("cpu");
-        }
+        };
       }
     };
   },
@@ -22,23 +24,23 @@ var OthelloGame = {
   cpu: function() {
     cpuCell = OthelloRules.cpuCell();
     OthelloGame.fill(cpuCell, CPU);
-    OthelloGame.eat(cpuCell, CPU);
+    OthelloGame.eat(cpuCell, CPU, HUMAN);
     OthelloGame.gameOver();
   },
   gameOver: function() {
     isGameOver = OthelloRules.isGameOver();
     if(isGameOver) {
-     alert("O vencedor foi: " + MatrixHelper.getWinner());
+     alert(MatrixHelper.getWinner());
     };
     return isGameOver;
   },
-  eat: function(lastCell, player) {
-    OthelloRules.eat(lastCell, player);
+  eat: function(lastCell, player, oposite) {
+    OthelloRules.eat(lastCell, player, oposite);
   },
   play: function(cell) {
     if(OthelloRules.checkValidPosition(cell, CPU)) {
       OthelloGame.fill(cell, HUMAN);
-      OthelloGame.eat(cell, HUMAN);
+      OthelloGame.eat(cell, HUMAN, CPU);
       if(!OthelloGame.gameOver()) {
         OthelloGame.cpu();
       }

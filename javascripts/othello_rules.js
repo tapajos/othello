@@ -11,10 +11,11 @@ var OthelloRules = {
   isGameOver: function() {
     return !MatrixHelper.hasEmpyCell();
   },
-  eat: function(lastCell, player) {
-    MatrixHelper.lineEat(lastCell, player);
-    MatrixHelper.colEat(lastCell, player);
-    MatrixHelper.positiveDiagonalEat(lastCell, player);
-    MatrixHelper.negativeDiagonalEat(lastCell, player);
+  eat: function(lastCell, player, oposite) {
+    MatrixHelper.lineEatLeftToRight(lastCell, player, oposite);
+    MatrixHelper.lineEatRightToLeft(lastCell, player, oposite);
+    MatrixHelper.colEat(lastCell, player, oposite);
+    MatrixHelper.positiveDiagonalEat(lastCell, player, oposite);
+    MatrixHelper.negativeDiagonalEat(lastCell, player, oposite);
   },
 };
