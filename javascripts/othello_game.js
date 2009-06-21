@@ -25,6 +25,7 @@ var OthelloGame = {
     cpuCell = OthelloRules.cpuCell();
     OthelloGame.fill(cpuCell, CPU);
     OthelloGame.eat(cpuCell, CPU, HUMAN);
+    OthelloGame.designBoard();
     OthelloGame.gameOver();
   },
   gameOver: function() {
@@ -41,10 +42,10 @@ var OthelloGame = {
     if(OthelloRules.checkValidPosition(cell, CPU)) {
       OthelloGame.fill(cell, HUMAN);
       OthelloGame.eat(cell, HUMAN, CPU);
+      OthelloGame.designBoard();
       if(!OthelloGame.gameOver()) {
         OthelloGame.cpu();
       }
-      OthelloGame.designBoard();
     } else {
       alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
     };
