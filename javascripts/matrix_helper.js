@@ -1,4 +1,7 @@
 var MatrixHelper = {
+  random: function() {
+    return {x:Math.floor(Math.random()*8), y:Math.floor(Math.random()*8)};
+  },
   valueFor: function(indexes, value) {
     matrix.getRow(indexes.x)[indexes.y] = value;
   },
@@ -32,5 +35,16 @@ var MatrixHelper = {
     } else {
       return HUMAN;
     };
+  },
+  emptyCell: function(cell_indexes) {
+    return matrix.getRow(cell_indexes.x)[cell_indexes.y] != UNOCCUPIED;
+  },
+  sortPosition: function() {
+    cell_indexes = MatrixHelper.random();
+    while(MatrixHelper.emptyCell(cell_indexes)){
+      cell_indexes = MatrixHelper.random();
+    }
+    matrix.getRow(cell_indexes.x)[cell_indexes.y] = CPU;
+    return cell_indexes;
   }
 };

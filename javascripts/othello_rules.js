@@ -1,11 +1,10 @@
 var OthelloRules = {
   checkValidPosition: function(cell) {
-    alert("Aqui devemos verificar se a jogada é permitida");
-    return true;
+    return !MatrixHelper.emptyCell(OthelloGame.indexes(cell));
   },
   cpuCell: function() {
-    alert("É nessa parte que entra a IA do jogo.\ Deve retornar a celula onde o computador vai jogar.");
-    return $("#cell_0_0");
+    cell_indexes = MatrixHelper.sortPosition();
+    return $("#cell_" + cell_indexes.x + "_" + cell_indexes.y);
   },
   isGameOver: function() {
     return !MatrixHelper.hasEmpyCell();

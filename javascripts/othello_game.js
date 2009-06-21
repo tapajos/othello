@@ -29,7 +29,7 @@ var OthelloGame = {
         OthelloGame.cpu();
       }
     } else {
-      // alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
+      alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
     };
   }
 };
