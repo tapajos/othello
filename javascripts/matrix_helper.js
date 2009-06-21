@@ -5,7 +5,7 @@ var MatrixHelper = {
   valueFor: function(indexes, value) {
     matrix.getRow(indexes.x)[indexes.y] = value;
   },
-  hasEmpyCell: function(){
+  hasEmptyCell: function(){
     for (var line_index=0;line_index<matrix.getRowSize();line_index=line_index+1) {
       line = matrix.getRow(line_index);
       for (var col_index=0;col_index<line.length;col_index=col_index+1) {
@@ -17,6 +17,16 @@ var MatrixHelper = {
     return false;
   },
   getWinner: function() {
+    count = MatrixHelper.countPieces();
+    if(count.cpu > count.human) {
+      return "Você perdeu, nossa IA te derrotou.";
+    } else if(count.human > count.cpu){
+      return "Parabéns, você venceu.";
+    } else if(count.human == count.cpu) {
+      return "Deuce!!"
+    };
+  },
+  countPieces: function() {
     cpu = 0;
     human = 0;
     for (var line_index=0;line_index<matrix.getRowSize();line_index=line_index+1) {
@@ -30,11 +40,7 @@ var MatrixHelper = {
         };
       };
     };
-    if(cpu > human) {
-      return "Você perdeu, nossa IA te derrotou.";
-    } else {
-      return "Parabéns, você venceu.";
-    };
+    return {cpu: cpu, human: human};
   },
   frontierTop: function(cellIndexes,oposite) {
     if(cellIndexes.x == 0) return false;

@@ -9,7 +9,11 @@ var OthelloRules = {
     return OthelloRules.cellFromIndexes(MatrixHelper.sortPosition());
   },
   isGameOver: function() {
-    return !MatrixHelper.hasEmpyCell();
+    count = MatrixHelper.countPieces();
+    if(count.human == 0 || count.cpu == 0) {
+      return true   
+    }
+    return !MatrixHelper.hasEmptyCell();
   },
   eat: function(lastCell, player, oposite) {
     MatrixHelper.lineEatLeftToRight(lastCell, player, oposite);
