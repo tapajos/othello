@@ -2,7 +2,7 @@ var MatrixHelper = {
   random: function() {
     return {x:Math.floor(Math.random()*8), y:Math.floor(Math.random()*8)};
   },
-  valueFor: function(indexes, value) {
+  setValueOn: function(indexes, value) {
     matrix.getRow(indexes.x)[indexes.y] = value;
   },
   hasEmptyCell: function(){

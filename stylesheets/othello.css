@@ -4,17 +4,27 @@
 }
 
 #othello_board {
-  width: 600px;
-  height: 600px;
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 350px;
+  height: 350px;
   color: #000000;
   border-spacing: 0;
   background-image: url('../images/board.jpg');
+  float: left;
+}
+
+#result {
+  margin-top: 100px;
+  margin-left: 500px;
 }
 
 .p1 {
-  background-color: red;
+  background-repeat: no-repeat;
+  background-image: url('../images/white.gif');
 }
 
 .cpu {
-  background-color: green;
+  background-repeat: no-repeat;
+  background-image: url('../images/black.gif');
 }

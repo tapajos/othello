@@ -19,7 +19,7 @@ var OthelloGame = {
     };
   },
   fill: function(cell, player_value) {
-    MatrixHelper.valueFor(OthelloGame.indexes(cell), player_value);
+    MatrixHelper.setValueOn(OthelloGame.indexes(cell), player_value);
   },
   cpu: function() {
     cpuCell = OthelloRules.cpuCell();
@@ -48,7 +48,7 @@ var OthelloGame = {
       OthelloGame.eat(cell, HUMAN, CPU);
       OthelloGame.designBoard();
       if(!OthelloGame.gameOver()) {
-        OthelloGame.cpu();
+        setTimeout("OthelloGame.cpu()",1250);
       }
     } else {
       alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
