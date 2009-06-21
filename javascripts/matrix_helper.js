@@ -36,15 +36,18 @@ var MatrixHelper = {
       return HUMAN;
     };
   },
-  emptyCell: function(cell_indexes) {
-    return matrix.getRow(cell_indexes.x)[cell_indexes.y] != UNOCCUPIED;
+  emptyCell: function(cellIndexes) {
+    return matrix.getRow(cellIndexes.x)[cellIndexes.y] != UNOCCUPIED;
   },
   sortPosition: function() {
-    cell_indexes = MatrixHelper.random();
-    while(MatrixHelper.emptyCell(cell_indexes)){
-      cell_indexes = MatrixHelper.random();
+    cellIndexes = MatrixHelper.random();
+    while(MatrixHelper.emptyCell(cellIndexes)){
+      cellIndexes = MatrixHelper.random();
     }
-    matrix.getRow(cell_indexes.x)[cell_indexes.y] = CPU;
-    return cell_indexes;
+    matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;
+    return cellIndexes;
+  },
+  cellsToEat: function() {
+    return [MatrixHelper.random(), MatrixHelper.random()]
   }
 };

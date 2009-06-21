@@ -12,7 +12,9 @@ var OthelloGame = {
     }
   },
   cpu: function() {
-    OthelloGame.fill(OthelloRules.cpuCell(), CPU);
+    cpuCell = OthelloRules.cpuCell();
+    OthelloGame.fill(cpuCell, CPU);
+    OthelloGame.eat(cpuCell, CPU);
     OthelloGame.gameOver();
   },
   gameOver: function() {
@@ -22,9 +24,17 @@ var OthelloGame = {
     };
     return isGameOver;
   },
+  eat: function(lastCell, player) {
+    //Stupid method name!!! It should be refactored!
+    cellstoEat = OthelloRules.cellsToEat(lastCell);
+    for (var index=0;index<cellstoEat.length;index=index+1) {
+      OthelloGame.fill(cellstoEat[index], player);
+    };
+  },
   play: function(cell) {
     if(OthelloRules.checkValidPosition(cell)) {
-      OthelloGame.fill(cell, 1);
+      OthelloGame.fill(cell, HUMAN);
+      OthelloGame.eat(cell, HUMAN);
       if(!OthelloGame.gameOver()) {
         OthelloGame.cpu();
       }
