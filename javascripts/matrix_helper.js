@@ -36,12 +36,58 @@ var MatrixHelper = {
       return HUMAN;
     };
   },
+  frontierTop: function(cellIndexes,oposite) {
+    if(cellIndexes.x == 0) return false;
+    return matrix.getRow(cellIndexes.x-1)[cellIndexes.y] == oposite;
+  },
+  frontierBotton: function(cellIndexes,oposite) {
+    if(cellIndexes.x == (matrix.getRowSize()-1)) return false;
+    return matrix.getRow(cellIndexes.x+1)[cellIndexes.y] == oposite;
+  },
+  frontierLeft: function(cellIndexes,oposite) {
+    if(cellIndexes.y == 0) return false;
+    return matrix.getRow(cellIndexes.x)[cellIndexes.y-1] == oposite;
+  },
+  frontierRight: function(cellIndexes,oposite) {
+    if(cellIndexes.y == (matrix.getColSize() -1)) return false;
+    return matrix.getRow(cellIndexes.x)[cellIndexes.y+1] == oposite;
+  },
+  frontierTopRight: function(cellIndexes,oposite) {
+    if(cellIndexes.x == 0) return false;
+    if(cellIndexes.y == (matrix.getColSize() -1)) return false;
+    return matrix.getRow(cellIndexes.x-1)[cellIndexes.y+1] == oposite;
+  },
+  frontierTopLeft: function(cellIndexes,oposite) {
+    if(cellIndexes.x == 0) return false;
+    if(cellIndexes.y == 0) return false;
+    return matrix.getRow(cellIndexes.x-1)[cellIndexes.y-1] == oposite;
+  },
+  frontierBottonRight: function(cellIndexes,oposite) {
+    if(cellIndexes.y == (matrix.getColSize() -1)) return false;
+    if(cellIndexes.x == (matrix.getRowSize() -1)) return false;
+    return matrix.getRow(cellIndexes.x+1)[cellIndexes.y+1] == oposite;
+  },
+  frontierBottonLeft: function(cellIndexes,oposite) {
+    if(cellIndexes.y == 0) return false;
+    if(cellIndexes.x == (matrix.getRowSize() -1)) return false;
+    return matrix.getRow(cellIndexes.x+1)[cellIndexes.y-1] == oposite;
+  },
+  frontier: function(cellIndexes,oposite) {
+    return MatrixHelper.frontierTop(cellIndexes,oposite)  || 
+                   MatrixHelper.frontierBotton(cellIndexes,oposite) ||
+                   MatrixHelper.frontierLeft(cellIndexes,oposite) ||
+                   MatrixHelper.frontierRight(cellIndexes,oposite) ||
+                   MatrixHelper.frontierTopRight(cellIndexes,oposite) ||
+                   MatrixHelper.frontierTopLeft(cellIndexes,oposite) ||
+                   MatrixHelper.frontierBottonRight(cellIndexes,oposite) ||
+                   MatrixHelper.frontierBottonLeft(cellIndexes,oposite);
+  },
   emptyCell: function(cellIndexes) {
-    return matrix.getRow(cellIndexes.x)[cellIndexes.y] != UNOCCUPIED;
+    return matrix.getRow(cellIndexes.x)[cellIndexes.y] == UNOCCUPIED;
   },
   sortPosition: function() {
     cellIndexes = MatrixHelper.random();
-    while(MatrixHelper.emptyCell(cellIndexes)){
+    while(!OthelloRules.checkValidPosition(OthelloRules.cellFromIndexes(cellIndexes), HUMAN) || !MatrixHelper.emptyCell(cellIndexes)) {
       cellIndexes = MatrixHelper.random();
     }
     matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;

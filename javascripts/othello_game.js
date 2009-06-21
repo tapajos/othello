@@ -1,7 +1,7 @@
 var OthelloGame = {
   indexes: function(cell) {
     result = /cell_(\d)_(\d)/.exec(cell.attr("id"));
-    return {x:result[1], y:result[2]};
+    return {x:parseInt(result[1]), y:parseInt(result[2])};
   },
   designBoard: function() {
     for (var line_index=0;line_index<matrix.getRowSize();line_index=line_index+1) {
@@ -36,7 +36,7 @@ var OthelloGame = {
     OthelloRules.eat(lastCell, player);
   },
   play: function(cell) {
-    if(OthelloRules.checkValidPosition(cell)) {
+    if(OthelloRules.checkValidPosition(cell, CPU)) {
       OthelloGame.fill(cell, HUMAN);
       OthelloGame.eat(cell, HUMAN);
       if(!OthelloGame.gameOver()) {
