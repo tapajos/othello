@@ -11,14 +11,10 @@ var OthelloRules = {
   isGameOver: function() {
     return !MatrixHelper.hasEmpyCell();
   },
-  cellsToEat: function(cell, player) {
-    result = MatrixHelper.cellsToEat(cell, player);
-    for (var index=0;index<result.length;index=index+1) {
-      result[index] = OthelloRules.cellFromIndexes(result[index]);
-    };
-    return result;
-    // 
-    // 
-    // return [$("#cell_0_0"),$("#cell_1_0")];
+  eat: function(lastCell, player) {
+    MatrixHelper.lineEat(lastCell, player);
+    MatrixHelper.colEat(lastCell, player);
+    MatrixHelper.positiveDiagonalEat(lastCell, player);
+    MatrixHelper.negativeDiagonalEat(lastCell, player);
   },
 };

@@ -47,7 +47,12 @@ var MatrixHelper = {
     matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;
     return cellIndexes;
   },
-  cellsToEat: function() {
-    return [MatrixHelper.random(), MatrixHelper.random()]
-  }
+  lineEat: function(lastCell, player) {
+  },
+  colEat: function(lastCell, player) {
+  },
+  positiveDiagonalEat: function(lastCell, player) {
+  },
+  negativeDiagonalEat: function(lastCell, player) {
+  },
 };
