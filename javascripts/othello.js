@@ -12,8 +12,8 @@ Array.prototype.clone = function () {
 }; 
 
 var matrix = new Matrix(8,8,0);
-matrix[3] = [0,0,0,HUMAN,CPU,0,0,0];
-matrix[4] = [0,0,0,CPU,HUMAN,0,0,0];
+matrix.setCol(3,[0,0,0,HUMAN,CPU,0,0,0]);
+matrix.setCol(4,[0,0,0,CPU,HUMAN,0,0,0]);
 
 jQuery(function($) {
   $('.othello_board_td').attach(OthelloCell);

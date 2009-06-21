@@ -129,7 +129,42 @@ var MatrixHelper = {
       matrix[indexes.x] = row;
     };
   },
-  colEat: function(lastCell, player, oposite) {
+  colEatTopToBotton: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    replace = false;
+    stop = false;
+    col = matrix.getCol(indexes.y).clone();
+    for(var index=indexes.x+1; index < col.length && !stop; index = index + 1) {
+      if(col[index] == oposite) {
+        col[index] = player;
+      } else {
+        if(col[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    if(replace) {
+      matrix.setCol(indexes.y, col);
+    };
+    
+  },
+  colEatBottonToTop: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    replace = false;
+    stop = false;
+    col = matrix.getCol(indexes.y).clone();
+    for(var index=indexes.x-1; index > 0 && !stop; index = index - 1) {
+      if(col[index] == oposite) {
+        col[index] = player;
+      } else {
+        if(col[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    if(replace) {
+      matrix.setCol(indexes.y, col);
+    };
   },
   positiveDiagonalEat: function(lastCell, player, oposite) {
   },

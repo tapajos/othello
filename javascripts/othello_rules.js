@@ -14,7 +14,8 @@ var OthelloRules = {
   eat: function(lastCell, player, oposite) {
     MatrixHelper.lineEatLeftToRight(lastCell, player, oposite);
     MatrixHelper.lineEatRightToLeft(lastCell, player, oposite);
-    MatrixHelper.colEat(lastCell, player, oposite);
+    MatrixHelper.colEatTopToBotton(lastCell, player, oposite);
+    MatrixHelper.colEatBottonToTop(lastCell, player, oposite);
     MatrixHelper.positiveDiagonalEat(lastCell, player, oposite);
     MatrixHelper.negativeDiagonalEat(lastCell, player, oposite);
   },

@@ -269,7 +269,7 @@ Matrix.prototype.getCol = function ( colIndex){
 //				  newVals, Array of numbers
 // Returns		: Array, containing values in row replaced if successful , otherwise null
 Matrix.prototype.setRow = function ( rowIndex, newVals){
-	if(checkArgs(arguments) || isNaN(rowIndex) || rowIndex >= this.getRowSize() || newVals.constructor != Array || newVals.length >= this.getColSize())
+	if(checkArgs(arguments) || isNaN(rowIndex) || rowIndex >= this.getRowSize() || newVals.constructor != Array || newVals.length > this.getColSize())
 		{
 		return null;
 		}
@@ -291,7 +291,7 @@ Matrix.prototype.setRow = function ( rowIndex, newVals){
 //				  newVals, Array of numbers
 // Returns		: Array, containing values in column replaced if successful , otherwise null
 Matrix.prototype.setCol = function ( colIndex, newVals){
-	if(checkArgs(arguments) || isNaN(colIndex) || colIndex >= this.getColSize() || newVals.constructor != Array || newVals.length >= this.getRowSize())
+	if(checkArgs(arguments) || isNaN(colIndex) || colIndex >= this.getColSize() || newVals.constructor != Array || newVals.length > this.getRowSize())
 		{
 		return null;
 		}
