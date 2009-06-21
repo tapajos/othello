@@ -235,7 +235,66 @@ var MatrixHelper = {
     
   },
   negativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    diagonal = [];
+    y = 1;
+    for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y - y) >= 0; line_index=line_index-1) {
+      diagonal.push(matrix.getRow(line_index)[indexes.y - y]);
+      y = y + 1;
+    };
+    
+    replace = false;
+    stop = false;
+    for(var index=0; index < diagonal.length && !stop; index = index + 1) {
+      if(diagonal[index] == oposite) {
+        diagonal[index] = player;
+      } else {
+        if(diagonal[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    
+    diagonal = diagonal.reverse();
+    
+    if(replace) {
+      y = 1;
+      for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y - y) >= 0; line_index=line_index-1) {
+        matrix.getRow(line_index)[indexes.y - y] = diagonal.pop();
+        y = y + 1;
+      };
+    };
   },
   negativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    diagonal = [];
+    y = 1;
+    for (var line_index=indexes.x+1;line_index < matrix.getRowSize() && (indexes.y + y) < matrix.getColSize(); line_index=line_index+1) {
+      diagonal.push(matrix.getRow(line_index)[indexes.y + y]);
+      y = y + 1;
+    };
+    
+    replace = false;
+    stop = false;
+    for(var index=0; index < diagonal.length && !stop; index = index + 1) {
+      if(diagonal[index] == oposite) {
+        diagonal[index] = player;
+      } else {
+        if(diagonal[index] == player){
+        replace = true;
+        stop = true;
+      }}
+    };
+    
+    
+    diagonal = diagonal.reverse();
+    
+    if(replace) {
+      y = 1;
+       for (var line_index=indexes.x+1;line_index < matrix.getRowSize() && (indexes.y + y) < matrix.getColSize(); line_index=line_index+1) {
+        matrix.getRow(line_index)[indexes.y + y] = diagonal.pop();
+        y = y + 1;
+      };
+    };
   }
 };

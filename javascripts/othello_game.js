@@ -42,7 +42,7 @@ var OthelloGame = {
       OthelloGame.fill(cell, HUMAN);
       OthelloGame.eat(cell, HUMAN, CPU);
       if(!OthelloGame.gameOver()) {
-        // OthelloGame.cpu();
+        OthelloGame.cpu();
       }
       OthelloGame.designBoard();
     } else {
