@@ -20,7 +20,9 @@ var OthelloRules = {
     MatrixHelper.lineEatRightToLeft(lastCell, player, oposite);
     MatrixHelper.colEatTopToBotton(lastCell, player, oposite);
     MatrixHelper.colEatBottonToTop(lastCell, player, oposite);
-    MatrixHelper.positiveDiagonalEat(lastCell, player, oposite);
-    MatrixHelper.negativeDiagonalEat(lastCell, player, oposite);
+    MatrixHelper.positiveDiagonalEatBottonToTop(lastCell, player, oposite);
+    MatrixHelper.positiveDiagonalEatTopToBotton(lastCell, player, oposite);
+    MatrixHelper.negativeDiagonalEatBottonToTop(lastCell, player, oposite);
+    MatrixHelper.negativeDiagonalEatTopToBotton(lastCell, player, oposite);
   },
 };
