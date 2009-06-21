@@ -109,9 +109,10 @@ var MatrixHelper = {
         row[index] = player;
       } else {
         if(row[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     if(replace) {
       matrix[indexes.x] = row;
@@ -127,9 +128,10 @@ var MatrixHelper = {
         row[index] = player;
       } else {
         if(row[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     if(replace) {
       matrix[indexes.x] = row;
@@ -145,9 +147,10 @@ var MatrixHelper = {
         col[index] = player;
       } else {
         if(col[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     if(replace) {
       matrix.setCol(indexes.y, col);
@@ -164,9 +167,10 @@ var MatrixHelper = {
         col[index] = player;
       } else {
         if(col[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     if(replace) {
       matrix.setCol(indexes.y, col);
@@ -188,9 +192,10 @@ var MatrixHelper = {
         diagonal[index] = player;
       } else {
         if(diagonal[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     
     diagonal = diagonal.reverse();
@@ -219,9 +224,10 @@ var MatrixHelper = {
         diagonal[index] = player;
       } else {
         if(diagonal[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     
     diagonal = diagonal.reverse();
@@ -250,9 +256,10 @@ var MatrixHelper = {
         diagonal[index] = player;
       } else {
         if(diagonal[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     
     diagonal = diagonal.reverse();
@@ -281,9 +288,10 @@ var MatrixHelper = {
         diagonal[index] = player;
       } else {
         if(diagonal[index] == player){
-        replace = true;
+          replace = true;
+        }
         stop = true;
-      }}
+      }
     };
     
     

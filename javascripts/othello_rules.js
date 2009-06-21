@@ -10,6 +10,7 @@ var OthelloRules = {
   },
   isGameOver: function() {
     count = MatrixHelper.countPieces();
+    OthelloGame.updateCount(count);
     if(count.human == 0 || count.cpu == 0) {
       return true   
     }

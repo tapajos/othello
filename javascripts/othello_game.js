@@ -38,6 +38,10 @@ var OthelloGame = {
   eat: function(lastCell, player, oposite) {
     OthelloRules.eat(lastCell, player, oposite);
   },
+  updateCount: function(count) {
+    $("#p1_count").html(count.human);
+    $("#cpu_count").html(count.cpu);
+  },
   play: function(cell) {
     if(OthelloRules.checkValidPosition(cell, CPU)) {
       OthelloGame.fill(cell, HUMAN);

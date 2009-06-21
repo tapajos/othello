@@ -8,7 +8,6 @@ Array.prototype.clone = function () {
     newArray[index] = this[index];
   }
   return newArray;
-  
 }; 
 
 var matrix = new Matrix(8,8,0);
