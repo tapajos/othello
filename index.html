@@ -16,101 +16,122 @@
     <meta content='pt-BR' http-equiv='content-Language' />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
-  <body>
-    <table id="othello_board">
+  <body background="images/background.jpg">
+    <table id="result_full">
       <tr>
-          <td id='cell_0_0' class="othello_board_td"></td>
-          <td id='cell_0_1' class="othello_board_td"></td>
-          <td id='cell_0_2' class="othello_board_td"></td>
-          <td id='cell_0_3' class="othello_board_td"></td>
-          <td id='cell_0_4' class="othello_board_td"></td>
-          <td id='cell_0_5' class="othello_board_td"></td>
-          <td id='cell_0_6' class="othello_board_td"></td>
-          <td id='cell_0_7' class="othello_board_td"></td>
-      </tr>
+          <td>
+	      <table id="result">
+	  	    <tr>
+		          <td colspan="2" id="placareletronico">Placar</td>
+		    <tr>
+		    <tr>
+		          <td>Human: </td>
+                      <td id='p1_count'>2</td>
+                <tr>
+                <tr>
+                      <td>CPU: </td>
+                      <td id='cpu_count'>2</td>
+                <tr>
+            </table>
+          </td>
       <tr>
-          <td id='cell_1_0' class="othello_board_td"></td>
-          <td id='cell_1_1' class="othello_board_td"></td>
-          <td id='cell_1_2' class="othello_board_td"></td>
-          <td id='cell_1_3' class="othello_board_td"></td>
-          <td id='cell_1_4' class="othello_board_td"></td>
-          <td id='cell_1_5' class="othello_board_td"></td>
-          <td id='cell_1_6' class="othello_board_td"></td>
-          <td id='cell_1_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_2_0' class="othello_board_td"></td>
-          <td id='cell_2_1' class="othello_board_td"></td>
-          <td id='cell_2_2' class="othello_board_td"></td>
-          <td id='cell_2_3' class="othello_board_td"></td>
-          <td id='cell_2_4' class="othello_board_td"></td>
-          <td id='cell_2_5' class="othello_board_td"></td>
-          <td id='cell_2_6' class="othello_board_td"></td>
-          <td id='cell_2_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_3_0' class="othello_board_td"></td>
-          <td id='cell_3_1' class="othello_board_td"></td>
-          <td id='cell_3_2' class="othello_board_td"></td>
-          <td id='cell_3_3' class="othello_board_td"></td>
-          <td id='cell_3_4' class="othello_board_td"></td>
-          <td id='cell_3_5' class="othello_board_td"></td>
-          <td id='cell_3_6' class="othello_board_td"></td>
-          <td id='cell_3_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_4_0' class="othello_board_td"></td>
-          <td id='cell_4_1' class="othello_board_td"></td>
-          <td id='cell_4_2' class="othello_board_td"></td>
-          <td id='cell_4_3' class="othello_board_td"></td>
-          <td id='cell_4_4' class="othello_board_td"></td>
-          <td id='cell_4_5' class="othello_board_td"></td>
-          <td id='cell_4_6' class="othello_board_td"></td>
-          <td id='cell_4_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_5_0' class="othello_board_td"></td>
-          <td id='cell_5_1' class="othello_board_td"></td>
-          <td id='cell_5_2' class="othello_board_td"></td>
-          <td id='cell_5_3' class="othello_board_td"></td>
-          <td id='cell_5_4' class="othello_board_td"></td>
-          <td id='cell_5_5' class="othello_board_td"></td>
-          <td id='cell_5_6' class="othello_board_td"></td>
-          <td id='cell_5_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_6_0' class="othello_board_td"></td>
-          <td id='cell_6_1' class="othello_board_td"></td>
-          <td id='cell_6_2' class="othello_board_td"></td>
-          <td id='cell_6_3' class="othello_board_td"></td>
-          <td id='cell_6_4' class="othello_board_td"></td>
-          <td id='cell_6_5' class="othello_board_td"></td>
-          <td id='cell_6_6' class="othello_board_td"></td>
-          <td id='cell_6_7' class="othello_board_td"></td>
-      </tr>
-      <tr>
-          <td id='cell_7_0' class="othello_board_td"></td>
-          <td id='cell_7_1' class="othello_board_td"></td>
-          <td id='cell_7_2' class="othello_board_td"></td>
-          <td id='cell_7_3' class="othello_board_td"></td>
-          <td id='cell_7_4' class="othello_board_td"></td>
-          <td id='cell_7_5' class="othello_board_td"></td>
-          <td id='cell_7_6' class="othello_board_td"></td>
-          <td id='cell_7_7' class="othello_board_td"></td>
-      </tr>
     </table>
-    <table id="result">
+    <table id="full_board">
+	<tr>
+	    <td>
+	    <table id="othello_board">
+	      <tr>
+	          <td id='cell_0_0' class="othello_board_td"></td>
+	          <td id='cell_0_1' class="othello_board_td"></td>
+	          <td id='cell_0_2' class="othello_board_td"></td>
+	          <td id='cell_0_3' class="othello_board_td"></td>
+	          <td id='cell_0_4' class="othello_board_td"></td>
+	          <td id='cell_0_5' class="othello_board_td"></td>
+	          <td id='cell_0_6' class="othello_board_td"></td>
+	          <td id='cell_0_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_1_0' class="othello_board_td"></td>
+	          <td id='cell_1_1' class="othello_board_td"></td>
+	          <td id='cell_1_2' class="othello_board_td"></td>
+	          <td id='cell_1_3' class="othello_board_td"></td>
+	          <td id='cell_1_4' class="othello_board_td"></td>
+	          <td id='cell_1_5' class="othello_board_td"></td>
+	          <td id='cell_1_6' class="othello_board_td"></td>
+	          <td id='cell_1_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_2_0' class="othello_board_td"></td>
+	          <td id='cell_2_1' class="othello_board_td"></td>
+	          <td id='cell_2_2' class="othello_board_td"></td>
+	          <td id='cell_2_3' class="othello_board_td"></td>
+	          <td id='cell_2_4' class="othello_board_td"></td>
+	          <td id='cell_2_5' class="othello_board_td"></td>
+	          <td id='cell_2_6' class="othello_board_td"></td>
+	          <td id='cell_2_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_3_0' class="othello_board_td"></td>
+	          <td id='cell_3_1' class="othello_board_td"></td>
+	          <td id='cell_3_2' class="othello_board_td"></td>
+	          <td id='cell_3_3' class="othello_board_td"></td>
+	          <td id='cell_3_4' class="othello_board_td"></td>
+	          <td id='cell_3_5' class="othello_board_td"></td>
+	          <td id='cell_3_6' class="othello_board_td"></td>
+	          <td id='cell_3_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_4_0' class="othello_board_td"></td>
+	          <td id='cell_4_1' class="othello_board_td"></td>
+	          <td id='cell_4_2' class="othello_board_td"></td>
+	          <td id='cell_4_3' class="othello_board_td"></td>
+	          <td id='cell_4_4' class="othello_board_td"></td>
+	          <td id='cell_4_5' class="othello_board_td"></td>
+	          <td id='cell_4_6' class="othello_board_td"></td>
+	          <td id='cell_4_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_5_0' class="othello_board_td"></td>
+	          <td id='cell_5_1' class="othello_board_td"></td>
+	          <td id='cell_5_2' class="othello_board_td"></td>
+	          <td id='cell_5_3' class="othello_board_td"></td>
+	          <td id='cell_5_4' class="othello_board_td"></td>
+	          <td id='cell_5_5' class="othello_board_td"></td>
+	          <td id='cell_5_6' class="othello_board_td"></td>
+	          <td id='cell_5_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_6_0' class="othello_board_td"></td>
+	          <td id='cell_6_1' class="othello_board_td"></td>
+	          <td id='cell_6_2' class="othello_board_td"></td>
+	          <td id='cell_6_3' class="othello_board_td"></td>
+	          <td id='cell_6_4' class="othello_board_td"></td>
+	          <td id='cell_6_5' class="othello_board_td"></td>
+	          <td id='cell_6_6' class="othello_board_td"></td>
+	          <td id='cell_6_7' class="othello_board_td"></td>
+	      </tr>
+	      <tr>
+	          <td id='cell_7_0' class="othello_board_td"></td>
+	          <td id='cell_7_1' class="othello_board_td"></td>
+	          <td id='cell_7_2' class="othello_board_td"></td>
+	          <td id='cell_7_3' class="othello_board_td"></td>
+	          <td id='cell_7_4' class="othello_board_td"></td>
+	          <td id='cell_7_5' class="othello_board_td"></td>
+	          <td id='cell_7_6' class="othello_board_td"></td>
+	          <td id='cell_7_7' class="othello_board_td"></td>
+	      </tr>
+	    </table>
+	    </td>
+	</tr>
+    </table>
+    <table id="newgame">
       <tr>
-          <td colspan="2">Placar</td>
-      <tr>
-      <tr>
-          <td>Human: </td>
-          <td id='p1_count'>2</td>
-      <tr>
-      <tr>
-          <td>CPU: </td>
-          <td id='cpu_count'>2</td>
-      <tr>
+          <td>
+		<form action="index.html">
+			<INPUT type="submit" name="newgame" value="Novo Jogo">
+		</form>
+          </td>
+      </tr>
     </table>
   </body>
 </html>

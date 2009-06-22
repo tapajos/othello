@@ -123,7 +123,7 @@ var MatrixHelper = {
     replace = false;
     stop = false;
     row = matrix.getRow(indexes.x).clone();
-    for(var index=indexes.y-1; index > 0 && !stop; index = index - 1) {
+    for(var index=indexes.y-1; index >= 0 && !stop; index = index - 1) {
       if(row[index] == oposite) {
         row[index] = player;
       } else {
@@ -162,7 +162,7 @@ var MatrixHelper = {
     replace = false;
     stop = false;
     col = matrix.getCol(indexes.y).clone();
-    for(var index=indexes.x-1; index > 0 && !stop; index = index - 1) {
+    for(var index=indexes.x-1; index >= 0 && !stop; index = index - 1) {
       if(col[index] == oposite) {
         col[index] = player;
       } else {
