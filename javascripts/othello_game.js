@@ -43,7 +43,7 @@ var OthelloGame = {
     $("#cpu_count").html(count.cpu);
   },
   play: function(cell) {
-    if(OthelloRules.checkValidPosition(cell, CPU)) {
+    if(OthelloRules.checkValidPosition(cell, HUMAN, CPU)) {
       OthelloGame.fill(cell, HUMAN);
       OthelloGame.eat(cell, HUMAN, CPU);
       OthelloGame.designBoard();

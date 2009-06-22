@@ -80,26 +80,42 @@ var MatrixHelper = {
   },
   frontier: function(cellIndexes,oposite) {
     return MatrixHelper.frontierTop(cellIndexes,oposite)  || 
-                   MatrixHelper.frontierBotton(cellIndexes,oposite) ||
-                   MatrixHelper.frontierLeft(cellIndexes,oposite) ||
-                   MatrixHelper.frontierRight(cellIndexes,oposite) ||
-                   MatrixHelper.frontierTopRight(cellIndexes,oposite) ||
-                   MatrixHelper.frontierTopLeft(cellIndexes,oposite) ||
-                   MatrixHelper.frontierBottonRight(cellIndexes,oposite) ||
-                   MatrixHelper.frontierBottonLeft(cellIndexes,oposite);
+           MatrixHelper.frontierBotton(cellIndexes,oposite) ||
+           MatrixHelper.frontierLeft(cellIndexes,oposite) ||
+           MatrixHelper.frontierRight(cellIndexes,oposite) ||
+           MatrixHelper.frontierTopRight(cellIndexes,oposite) ||
+           MatrixHelper.frontierTopLeft(cellIndexes,oposite) ||
+           MatrixHelper.frontierBottonRight(cellIndexes,oposite) ||
+           MatrixHelper.frontierBottonLeft(cellIndexes,oposite);
+  },
+  isEatable: function(lastCell, player, oposite) {
+    return  MatrixHelper.checkLineEatLeftToRight(lastCell, player, oposite).replace ||
+            MatrixHelper.checkLineEatRightToLeft(lastCell, player, oposite).replace ||
+            MatrixHelper.checkColEatTopToBotton(lastCell, player, oposite).replace ||
+            MatrixHelper.checkColEatBottonToTop(lastCell, player, oposite).replace ||
+            MatrixHelper.checkPositiveDiagonalEatBottonToTop(lastCell, player, oposite).replace ||
+            MatrixHelper.checkPositiveDiagonalEatTopToBotton(lastCell, player, oposite).replace ||
+            MatrixHelper.checkNegativeDiagonalEatBottonToTop(lastCell, player, oposite).replace ||
+            MatrixHelper.checkNegativeDiagonalEatTopToBotton(lastCell, player, oposite).replace
   },
   emptyCell: function(cellIndexes) {
     return matrix.getRow(cellIndexes.x)[cellIndexes.y] == UNOCCUPIED;
   },
   sortPosition: function() {
     cellIndexes = MatrixHelper.random();
-    while(!OthelloRules.checkValidPosition(OthelloRules.cellFromIndexes(cellIndexes), HUMAN) || !MatrixHelper.emptyCell(cellIndexes)) {
+    while(!OthelloRules.checkValidPosition(OthelloRules.cellFromIndexes(cellIndexes), CPU, HUMAN) || !MatrixHelper.emptyCell(cellIndexes)) {
       cellIndexes = MatrixHelper.random();
     }
     matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;
     return cellIndexes;
   },
   lineEatLeftToRight: function(lastCell, player, oposite) {
+    item = MatrixHelper.checkLineEatLeftToRight(lastCell, player, oposite);
+    if(item.replace) {
+      matrix[indexes.x] = item.collection;
+    };
+  },
+  checkLineEatLeftToRight: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -112,13 +128,20 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == indexes.y+1) {
+          replace = false;
+        }
       }
     };
-    if(replace) {
-      matrix[indexes.x] = row;
-    };
+    return {replace:replace, collection: row};
   },
   lineEatRightToLeft: function(lastCell, player, oposite) {
+    item = MatrixHelper.checkLineEatRightToLeft(lastCell, player, oposite);
+    if(item.replace) {
+      matrix[indexes.x] = item.collection;
+    };
+  },
+  checkLineEatRightToLeft: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -130,14 +153,23 @@ var MatrixHelper = {
         if(row[index] == player){
           replace = true;
         }
+        if(index == indexes.y-1) {
+          replace = false;
+        }
         stop = true;
       }
     };
-    if(replace) {
-      matrix[indexes.x] = row;
-    };
+    return {replace:replace, collection: row};
   },
   colEatTopToBotton: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkColEatTopToBotton(lastCell, player, oposite);
+    if(item.replace) {
+      matrix.setCol(indexes.y, item.collection);
+    };
+    
+  },
+  checkColEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -150,14 +182,22 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == indexes.x+1) {
+          replace = false;
+        }
+        
       }
     };
-    if(replace) {
-      matrix.setCol(indexes.y, col);
-    };
-    
+    return {replace:replace, collection: col};
   },
   colEatBottonToTop: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkColEatBottonToTop(lastCell, player, oposite);
+    if(item.replace) {
+      matrix.setCol(indexes.y, item.collection);
+    };
+  },
+  checkColEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -170,13 +210,26 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == indexes.x-1) {
+          replace = false;
+        }
+        
       }
     };
-    if(replace) {
-      matrix.setCol(indexes.y, col);
-    };
+    return {replace:replace, collection: col};
   },
   positiveDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkPositiveDiagonalEatBottonToTop(lastCell, player, oposite);
+    if(item.replace) {
+      y = 1;
+      for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y + y) < matrix.getColSize();line_index=line_index-1){
+        matrix.getRow(line_index)[indexes.y + y] = item.collection.pop();
+        y = y + 1;
+      };
+    };
+  },
+  checkPositiveDiagonalEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -195,20 +248,28 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == 0) {
+          replace = false;
+        }
+        
       }
     };
-    
     diagonal = diagonal.reverse();
-      
-    if(replace) {
+    return {replace:replace, collection: diagonal};
+  },
+  positiveDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkPositiveDiagonalEatTopToBotton(lastCell, player, oposite);
+    if(item.replace) {
       y = 1;
-      for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y + y) < matrix.getColSize();line_index=line_index-1){
-        matrix.getRow(line_index)[indexes.y + y] = diagonal.pop();
+      for (var line_index=indexes.x+1;line_index<matrix.getRowSize() && (indexes.y - y) >= 0;line_index=line_index+1) {
+        matrix.getRow(line_index)[indexes.y - y] = item.collection.pop();
         y = y + 1;
       };
     };
+    
   },
-  positiveDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+  checkPositiveDiagonalEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -226,21 +287,30 @@ var MatrixHelper = {
         if(diagonal[index] == player){
           replace = true;
         }
+        if(index == 0) {
+          replace = false;
+        }
+        
         stop = true;
       }
     };
     
     diagonal = diagonal.reverse();
-    if(replace) {
+    return {replace:replace, collection: diagonal};
+  },
+  negativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkNegativeDiagonalEatBottonToTop(lastCell, player, oposite);
+    
+    if(item.replace) {
       y = 1;
-      for (var line_index=indexes.x+1;line_index<matrix.getRowSize() && (indexes.y - y) >= 0;line_index=line_index+1) {
-        matrix.getRow(line_index)[indexes.y - y] = diagonal.pop();
+      for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y - y) >= 0; line_index=line_index-1) {
+        matrix.getRow(line_index)[indexes.y - y] = item.collection.pop();
         y = y + 1;
       };
     };
-    
   },
-  negativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+  checkNegativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -259,20 +329,28 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == 0) {
+          replace = false;
+        }
+        
       }
     };
     
     diagonal = diagonal.reverse();
-    
-    if(replace) {
+    return {replace:replace, collection: diagonal};
+  },
+  negativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+    indexes = OthelloGame.indexes(lastCell);
+    item = MatrixHelper.checkNegativeDiagonalEatTopToBotton(lastCell, player, oposite);
+    if(item.replace) {
       y = 1;
-      for (var line_index=indexes.x-1;line_index >= 0 && (indexes.y - y) >= 0; line_index=line_index-1) {
-        matrix.getRow(line_index)[indexes.y - y] = diagonal.pop();
+       for (var line_index=indexes.x+1;line_index < matrix.getRowSize() && (indexes.y + y) < matrix.getColSize(); line_index=line_index+1) {
+        matrix.getRow(line_index)[indexes.y + y] = item.collection.pop();
         y = y + 1;
       };
     };
   },
-  negativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+  checkNegativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -291,18 +369,15 @@ var MatrixHelper = {
           replace = true;
         }
         stop = true;
+        if(index == 0) {
+          replace = false;
+        }
+        
       }
     };
     
     
     diagonal = diagonal.reverse();
-    
-    if(replace) {
-      y = 1;
-       for (var line_index=indexes.x+1;line_index < matrix.getRowSize() && (indexes.y + y) < matrix.getColSize(); line_index=line_index+1) {
-        matrix.getRow(line_index)[indexes.y + y] = diagonal.pop();
-        y = y + 1;
-      };
-    };
+    return {replace:replace, collection: diagonal};
   }
 };
