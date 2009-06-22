@@ -1,6 +1,6 @@
 var OthelloRules = {
-  checkValidPosition: function(cell, oposite) {
-    return MatrixHelper.emptyCell(OthelloGame.indexes(cell)) && MatrixHelper.frontier(OthelloGame.indexes(cell), oposite);
+  checkValidPosition: function(cell, player, oposite) {
+    return MatrixHelper.emptyCell(OthelloGame.indexes(cell)) && MatrixHelper.frontier(OthelloGame.indexes(cell), oposite) && MatrixHelper.isEatable(cell, player, oposite);
   },
   cellFromIndexes: function(cellIndexes) {
     return $("#cell_" + cellIndexes.x + "_" + cellIndexes.y);
