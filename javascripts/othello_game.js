@@ -43,15 +43,20 @@ var OthelloGame = {
     $("#cpu_count").html(count.cpu);
   },
   play: function(cell) {
-    if(OthelloRules.checkValidPosition(cell, HUMAN, CPU)) {
-      OthelloGame.fill(cell, HUMAN);
-      OthelloGame.eat(cell, HUMAN, CPU);
-      OthelloGame.designBoard();
-      if(!OthelloGame.gameOver()) {
-        setTimeout("OthelloGame.cpu()",1250);
-      }
+    if(nextPlayer == HUMAN) {
+      if(OthelloRules.checkValidPosition(cell, HUMAN, CPU)) {
+        nextPlayer = CPU;
+        OthelloGame.fill(cell, HUMAN);
+        OthelloGame.eat(cell, HUMAN, CPU);
+        OthelloGame.designBoard();
+        if(!OthelloGame.gameOver()) {
+          setTimeout("OthelloGame.cpu();nextPlayer = HUMAN;",1250);
+        }
+      } else {
+        alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
+      };
     } else {
-      alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
-    };
+      alert("Será que você pode esperar o computador jogar?????");
+    }
   }
 };
