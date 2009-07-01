@@ -9,5 +9,6 @@ matrix.setCol(4,[0,0,0,CPU,HUMAN,0,0,0]);
 
 jQuery(function($) {
   $('.othello_board_td').attach(OthelloCell);
+  $('#pass').attach(OthelloHumanPass);
   OthelloGame.designBoard();
 });

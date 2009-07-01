@@ -29,6 +29,7 @@ var OthelloGame = {
       OthelloGame.designBoard();
       OthelloGame.gameOver();
     }
+    nextPlayer = HUMAN;
   },
   gameOver: function() {
     isGameOver = OthelloRules.isGameOver();
@@ -52,7 +53,7 @@ var OthelloGame = {
         OthelloGame.eat(cell, HUMAN, CPU);
         OthelloGame.designBoard();
         if(!OthelloGame.gameOver()) {
-          setTimeout("OthelloGame.cpu();nextPlayer = HUMAN;",1250);
+          setTimeout("OthelloGame.cpu()",1250);
         }
       } else {
         alert("Essa jogada não é permitida, tente novamente dessa vez dentro das regras.");
