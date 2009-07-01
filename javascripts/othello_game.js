@@ -23,10 +23,12 @@ var OthelloGame = {
   },
   cpu: function() {
     cpuCell = OthelloRules.cpuCell();
-    OthelloGame.fill(cpuCell, CPU);
-    OthelloGame.eat(cpuCell, CPU, HUMAN);
-    OthelloGame.designBoard();
-    OthelloGame.gameOver();
+    if(cpuCell) {
+      OthelloGame.fill(cpuCell, CPU);
+      OthelloGame.eat(cpuCell, CPU, HUMAN);
+      OthelloGame.designBoard();
+      OthelloGame.gameOver();
+    }
   },
   gameOver: function() {
     isGameOver = OthelloRules.isGameOver();

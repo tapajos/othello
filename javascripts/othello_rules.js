@@ -6,7 +6,12 @@ var OthelloRules = {
     return $("#cell_" + cellIndexes.x + "_" + cellIndexes.y);
   },
   cpuCell: function() {
-    return OthelloRules.cellFromIndexes(MatrixHelper.sortPosition());
+    allPossibles = MatrixHelper.allPossible(CPU, HUMAN);
+    if(allPossibles != []) {
+      return MatrixHelper.random(allPossibles);
+    } else {
+      return null;
+    }
   },
   isGameOver: function() {
     count = MatrixHelper.countPieces();
