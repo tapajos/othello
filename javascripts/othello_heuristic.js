@@ -1,7 +1,9 @@
 var OthelloHeuristic = {
   next: function(allPossibles) {
-    alert(allPossibles[Math.floor(Math.random()*allPossibles.length)].heuristic);
-    return OthelloRules.cellFromIndexes(allPossibles[Math.floor(Math.random()*allPossibles.length)]);
+    return OthelloRules.cellFromIndexes(allPossibles.sort(OthelloHeuristic.sortFunction)[0]);
+  },
+  sortFunction: function(element, other) {
+    return (other.heuristic - element.heuristic);
   },
   getHeuristicFor: function(cell) {
     return  MatrixHelper.checkLineEatLeftToRight(cell, CPU, HUMAN).weight +
