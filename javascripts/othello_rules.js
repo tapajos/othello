@@ -8,7 +8,7 @@ var OthelloRules = {
   cpuCell: function() {
     allPossibles = MatrixHelper.allPossible(CPU, HUMAN);
     if(allPossibles != []) {
-      return MatrixHelper.next(allPossibles);
+      return OthelloHeuristic.next(allPossibles);
     } else {
       return null;
     }

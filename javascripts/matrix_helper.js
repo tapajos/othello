@@ -14,9 +14,6 @@ var MatrixHelper = {
     }
     return possibles;
   },
-  next: function(allPossibles) {
-    return allPossibles[Math.floor(Math.random()*allPossibles.length)];
-  },
   setValueOn: function(indexes, value) {
     matrix.getRow(indexes.x)[indexes.y] = value;
   },
