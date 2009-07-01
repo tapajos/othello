@@ -14,7 +14,7 @@ var MatrixHelper = {
     }
     return possibles;
   },
-  random: function(allPossibles) {
+  next: function(allPossibles) {
     return allPossibles[Math.floor(Math.random()*allPossibles.length)];
   },
   setValueOn: function(indexes, value) {
@@ -115,14 +115,6 @@ var MatrixHelper = {
   },
   emptyCell: function(cellIndexes) {
     return matrix.getRow(cellIndexes.x)[cellIndexes.y] == UNOCCUPIED;
-  },
-  sortPosition: function() {
-    cellIndexes = MatrixHelper.random();
-    while(!OthelloRules.checkValidPosition(OthelloRules.cellFromIndexes(cellIndexes), CPU, HUMAN) || !MatrixHelper.emptyCell(cellIndexes)) {
-      cellIndexes = MatrixHelper.random();
-    }
-    matrix.getRow(cellIndexes.x)[cellIndexes.y] = CPU;
-    return cellIndexes;
   },
   lineEatLeftToRight: function(lastCell, player, oposite) {
     item = MatrixHelper.checkLineEatLeftToRight(lastCell, player, oposite);
