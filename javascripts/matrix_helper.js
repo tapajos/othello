@@ -7,7 +7,7 @@ var MatrixHelper = {
         if(line[col_index] == UNOCCUPIED){
           cell = OthelloRules.cellFromIndexes({x:line_index, y:col_index});
           if (OthelloRules.checkValidPosition(cell, player, oposite)) {
-            possibles[possibles.length] = cell;
+            possibles[possibles.length] = {x:line_index, y:col_index, heuristic: OthelloHeuristic.getHeuristicFor(cell)};
           }
         }
       }
@@ -120,6 +120,7 @@ var MatrixHelper = {
     };
   },
   checkLineEatLeftToRight: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -127,6 +128,7 @@ var MatrixHelper = {
     for(var index=indexes.y+1; index < row.length && !stop; index = index + 1) {
       if(row[index] == oposite) {
         row[index] = player;
+        weight += 1;
       } else {
         if(row[index] == player){
           replace = true;
@@ -137,7 +139,7 @@ var MatrixHelper = {
         }
       }
     };
-    return {replace:replace, collection: row};
+    return {replace:replace, collection: row, weight: weight};
   },
   lineEatRightToLeft: function(lastCell, player, oposite) {
     item = MatrixHelper.checkLineEatRightToLeft(lastCell, player, oposite);
@@ -146,6 +148,7 @@ var MatrixHelper = {
     };
   },
   checkLineEatRightToLeft: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -153,6 +156,7 @@ var MatrixHelper = {
     for(var index=indexes.y-1; index >= 0 && !stop; index = index - 1) {
       if(row[index] == oposite) {
         row[index] = player;
+        weight += 1;
       } else {
         if(row[index] == player){
           replace = true;
@@ -163,7 +167,7 @@ var MatrixHelper = {
         stop = true;
       }
     };
-    return {replace:replace, collection: row};
+    return {replace:replace, collection: row, weight: weight};
   },
   colEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -174,6 +178,7 @@ var MatrixHelper = {
     
   },
   checkColEatTopToBotton: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -181,6 +186,7 @@ var MatrixHelper = {
     for(var index=indexes.x+1; index < col.length && !stop; index = index + 1) {
       if(col[index] == oposite) {
         col[index] = player;
+        weight += 1;
       } else {
         if(col[index] == player){
           replace = true;
@@ -192,7 +198,7 @@ var MatrixHelper = {
         
       }
     };
-    return {replace:replace, collection: col};
+    return {replace:replace, collection: col, weight: weight};
   },
   colEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -202,6 +208,7 @@ var MatrixHelper = {
     };
   },
   checkColEatBottonToTop: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     replace = false;
     stop = false;
@@ -209,6 +216,7 @@ var MatrixHelper = {
     for(var index=indexes.x-1; index >= 0 && !stop; index = index - 1) {
       if(col[index] == oposite) {
         col[index] = player;
+        weight += 1;
       } else {
         if(col[index] == player){
           replace = true;
@@ -220,7 +228,7 @@ var MatrixHelper = {
         
       }
     };
-    return {replace:replace, collection: col};
+    return {replace:replace, collection: col, weight: weight};
   },
   positiveDiagonalEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -234,6 +242,7 @@ var MatrixHelper = {
     };
   },
   checkPositiveDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -247,6 +256,7 @@ var MatrixHelper = {
     for(var index=0; index < diagonal.length && !stop; index = index + 1) {
       if(diagonal[index] == oposite) {
         diagonal[index] = player;
+        weight += 1;
       } else {
         if(diagonal[index] == player){
           replace = true;
@@ -259,7 +269,7 @@ var MatrixHelper = {
       }
     };
     diagonal = diagonal.reverse();
-    return {replace:replace, collection: diagonal};
+    return {replace:replace, collection: diagonal, weight: weight};
   },
   positiveDiagonalEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -274,6 +284,7 @@ var MatrixHelper = {
     
   },
   checkPositiveDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -287,6 +298,7 @@ var MatrixHelper = {
     for(var index=0; index < diagonal.length && !stop; index = index + 1) {
       if(diagonal[index] == oposite) {
         diagonal[index] = player;
+        weight += 1;
       } else {
         if(diagonal[index] == player){
           replace = true;
@@ -300,7 +312,7 @@ var MatrixHelper = {
     };
     
     diagonal = diagonal.reverse();
-    return {replace:replace, collection: diagonal};
+    return {replace:replace, collection: diagonal, weight: weight};
   },
   negativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -315,6 +327,7 @@ var MatrixHelper = {
     };
   },
   checkNegativeDiagonalEatBottonToTop: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -328,6 +341,7 @@ var MatrixHelper = {
     for(var index=0; index < diagonal.length && !stop; index = index + 1) {
       if(diagonal[index] == oposite) {
         diagonal[index] = player;
+        weight += 1;
       } else {
         if(diagonal[index] == player){
           replace = true;
@@ -341,7 +355,7 @@ var MatrixHelper = {
     };
     
     diagonal = diagonal.reverse();
-    return {replace:replace, collection: diagonal};
+    return {replace:replace, collection: diagonal, weight: weight};
   },
   negativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
     indexes = OthelloGame.indexes(lastCell);
@@ -355,6 +369,7 @@ var MatrixHelper = {
     };
   },
   checkNegativeDiagonalEatTopToBotton: function(lastCell, player, oposite) {
+    weight = 0;
     indexes = OthelloGame.indexes(lastCell);
     diagonal = [];
     y = 1;
@@ -368,6 +383,7 @@ var MatrixHelper = {
     for(var index=0; index < diagonal.length && !stop; index = index + 1) {
       if(diagonal[index] == oposite) {
         diagonal[index] = player;
+        weight += 1;
       } else {
         if(diagonal[index] == player){
           replace = true;
@@ -382,6 +398,6 @@ var MatrixHelper = {
     
     
     diagonal = diagonal.reverse();
-    return {replace:replace, collection: diagonal};
+    return {replace:replace, collection: diagonal, weight: weight};
   }
 };
