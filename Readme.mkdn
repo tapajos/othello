@@ -1,0 +1,10 @@
+# Technical Requisites
+
+Firefox or Safari
+
+# Authors
+
+Marcos Tapajós
+Rodrigo Fernandez
+Vinícius Trindade Dias
+Leandro Coelho
