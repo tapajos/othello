@@ -26,7 +26,7 @@ var OthelloGame = {
     if(cpuCell) {
       OthelloGame.fill(cpuCell, CPU);
       OthelloGame.eat(cpuCell, CPU, HUMAN);
-      OthelloGame.designBoard();
+      OthelloGame.designBoard();      
       OthelloGame.gameOver();
     }
     nextPlayer = HUMAN;

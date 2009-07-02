@@ -14,6 +14,9 @@ var OthelloRules = {
     }
   },
   isGameOver: function() {
+    if(MatrixHelper.allPossible(CPU, HUMAN) == [] && MatrixHelper.allPossible(HUMAN, CPU) == []){
+      return true
+    }
     count = MatrixHelper.countPieces();
     OthelloGame.updateCount(count);
     if(count.human == 0 || count.cpu == 0) {

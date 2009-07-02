@@ -6,7 +6,17 @@ var OthelloHeuristic = {
     return (other.heuristic - element.heuristic);
   },
   getHeuristicFor: function(cell) {
-    return  MatrixHelper.checkLineEatLeftToRight(cell, CPU, HUMAN).weight +
+    cellIndexes = OthelloGame.indexes(cell);
+    borderWeight = 0;
+    if(MatrixHelper.frontierTopRight(cellIndexes,HUMAN) ||
+    MatrixHelper.frontierTopLeft(cellIndexes,HUMAN) ||
+    MatrixHelper.frontierBottonRight(cellIndexes,HUMAN) ||
+    MatrixHelper.frontierBottonLeft(cellIndexes,HUMAN)
+    ) {
+      borderWeight = 100;
+    }
+    return  borderWeight + 
+            MatrixHelper.checkLineEatLeftToRight(cell, CPU, HUMAN).weight +
             MatrixHelper.checkLineEatRightToLeft(cell, CPU, HUMAN).weight +
             MatrixHelper.checkColEatTopToBotton(cell, CPU, HUMAN).weight +
             MatrixHelper.checkColEatBottonToTop(cell, CPU, HUMAN).weight +
