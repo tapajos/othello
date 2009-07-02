@@ -22,14 +22,16 @@ var OthelloGame = {
     MatrixHelper.setValueOn(OthelloGame.indexes(cell), player_value);
   },
   cpu: function() {
+    nextPlayer = HUMAN;
     cpuCell = OthelloRules.cpuCell();
     if(cpuCell) {
       OthelloGame.fill(cpuCell, CPU);
       OthelloGame.eat(cpuCell, CPU, HUMAN);
       OthelloGame.designBoard();      
       OthelloGame.gameOver();
+    } else {
+      alert("Eu passo a vez. Joga rápido, por favor!")
     }
-    nextPlayer = HUMAN;
   },
   gameOver: function() {
     isGameOver = OthelloRules.isGameOver();
