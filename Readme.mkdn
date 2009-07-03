@@ -4,7 +4,7 @@ Firefox or Safari
 
 # Authors
 
-Marcos Tapajós
+Marcos TapajÃ³s
 Rodrigo Fernandez
-Vinícius Trindade Dias
+VinÃ­cius Trindade Dias
 Leandro Coelho
